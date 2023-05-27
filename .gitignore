@@ -1,0 +1,36 @@
+#edittors
+*.swp
+.idea/
+.vs/
+.DS_Store
+.vscode
+
+
+#Logs
+logs
+*.log
+npm-debug.log*
+
+
+# compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+
+#Dependency directories
+node_modules/
+jspm_packages
+
+#Distribution directories
+dist/ 
+bin/
+lib/
+
+#npm csche directory
+.npm
+#.eslintcache
+.eslintcache
+.node_repl_history
+
+#.output of 'npm pack '
+*.tgz
+
