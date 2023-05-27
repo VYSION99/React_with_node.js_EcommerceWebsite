@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  yallist:
+    image: yallist
+    build:
+      context: node_modules/yallist
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 4000:4000
+      - 9229:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "yallist.js"]

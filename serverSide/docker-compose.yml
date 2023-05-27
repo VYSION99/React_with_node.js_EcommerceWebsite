@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  yallist:
+    image: yallist
+    build:
+      context: node_modules/yallist
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4000:4000
