@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { FaEye } from "react-icons/fa";
+import { useNavigate,Link } from "react-router-dom";
+import {FaEye} from "react-icons/fa"
 
-import { Login, reset} from "../../redux/authRudux/loginSlice";
 
-import { PSWD, Regex, Showpassword } from "./validation";
+import { Login, reset} from "../../redux/authRudux/signUpSlice";
+
+import { PSWD, Regex, showPass} from "./validation";
 
 const log = () => {
   //=> setting state obj...
   const [formData, setFormData] = useState({
     Email: "",
     Password: "",
+    checked:""
   });
 
   //=>state Data
-  const { Email, Password } = formData;
+  const { Email, Password,checked } = formData;
 
   const CheckEmail = Email.match(Regex);
   const CheckPassword = Password.match(PSWD);
@@ -30,20 +31,19 @@ const log = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, isError, isLoading, isSuccess, message } = useSelector(
-    (state) => state.Log
-  );
+    (state) => state.auth);
 
   useEffect(() => {
     if (isError) {
-      document.querySelector(".error").innerHTML = message.msg;
+      document.querySelector(".error").innerHTML = message;
     }
 
-    if (user &&isSuccess ) {
-      navigate("/dashboard");
+    if (user && isSuccess ) {
+    navigate("/dashboard")
     }
-    setTimeout(() => {
+   setTimeout(()=>{
       dispatch(reset());
-    }, 3000);
+    },2000)
   }, [user, isError, isLoading, isSuccess, message, dispatch, navigate]);
 
   const SubmitForm = (e) => {
@@ -55,18 +55,19 @@ const log = () => {
     }
   };
 
+
   return (
     <div>
       <form className=" mx-12  gap-2 shadow p-3 " onSubmit={SubmitForm}>
-        <span className="text-red-600 font-extrabold error"></span>
-        <div className=" shadow-sm ">
+        <small className="text-red-600 font-extralight error"></small>
+        <div className=" shadow-sm my-3 mb-2">
           <input
             className={
               !Email
-                ? "form-control  my-2"
+                ? "form-control  "
                 : CheckEmail
-                ? "form-control  my-2 is-valid"
-                : "form-control  is-invalid my-2"
+                ? "form-control  is-valid"
+                : "form-control   is-invalid "
             }
             type="email"
             placeholder="Email"
@@ -77,49 +78,37 @@ const log = () => {
             required
           />
 
-          <span className="font-extralight valid-feedback">
-            Please Email is valid
-          </span>
-          <span className="font-extralight invalid-feedback">
-            {" "}
-            Email is invalid
-          </span>
         </div>
 
-        <div className="shadow-sm ">
+        <div className="shadow-sm my-3 mb-2">
           <input
             className={
               !Password
-                ? "form-control  my-2"
+                ? "form-control  "
                 : CheckPassword
-                ? "form-control  my-2 is-valid"
-                : "form-control is-invalid my-2"
+                ? "form-control  is-valid"
+                : "form-control is-invalid "
             }
             type="Password"
             placeholder="Password"
-            id="Password"
+            id="Password1"
             required
             name="Password"
             value={Password}
             onChange={onChange}
           />
 
-          <span className="font-extralight invalid-feedback">
-            Use at least 6-15 characters,digit and special character (eg.@,$){" "}
+          <span className="font-extralight mb-2 invalid-feedback">
+            Use @least 8-15 characters,digit and symbols (eg.@,$){" "}
           </span>
           <span className="font-extralight valid-feedback">
             Strong Password
           </span>
         </div>
-
-        <div className="flex my-4">
-          <input type="checkbox" onClick={Showpassword} label="shope" className=" text-yellow-500 flex" />
-           
-         
-          <small className=" text-yellow-500">  ShowPassword</small>
-          <small className="ml-24 text-yellow-500">ForgetPassword</small>
-        </div>
-
+        <label htmlFor='show' className="ml-3 my-3"> 
+    <input type="checkbox" 
+    value={checked} onChange={onchange} onClick={showPass} id='show' name=''/> 
+      Show Password</label>
         <div className="">
           <button
             type="submit"

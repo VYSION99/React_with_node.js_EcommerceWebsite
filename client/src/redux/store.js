@@ -1,6 +1,5 @@
 import {configureStore} from "@reduxjs/toolkit";
-import signReducer from "./authRudux/signUpSlice"
-import logReducer from "./authRudux/loginSlice"
+import authReducer from "./authRudux/signUpSlice"
 import {AdminSlicer} from "./authRudux/adminSlice"
 import AdminLogins from "./authRudux/AdminLogSlice"
 
@@ -10,9 +9,9 @@ import AdminLogins from "./authRudux/AdminLogSlice"
 export const  store = configureStore({
 
     reducer:{
-        Sign:signReducer,
+        auth:authReducer,
             
-        Log:logReducer,
+    
         AdminSign: AdminSlicer,
         AdminLogs: AdminLogins,
         

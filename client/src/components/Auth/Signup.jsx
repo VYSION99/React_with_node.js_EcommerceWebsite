@@ -1,10 +1,11 @@
 import { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {FaEye} from  "react-icons/fa"
 
 import { register, reset } from "../../redux/authRudux/signUpSlice";
 import { Form, Field } from "react-final-form";
-import { validate } from "./validation";
+import {showPass} from "./validation";
 
 
 import Select from 'react-select'
@@ -38,7 +39,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, isError, isLoading, isSuccess, message } = useSelector(
-    (state) => state.Sign
+    (state) => state.auth
   );
 
   useEffect(() => {
@@ -48,19 +49,19 @@ const Signup = () => {
       ErrorMsg.innerText = message
       setTimeout(()=>{
       ErrorMsg.classList.add("hidden")
-      },4000)
+      },8000)
     }
    
 
-    if (isSuccess && user) {
+    if ( user) {
       navigate("/dashboard");
     }
 
-    setTimeout( ()=>{dispatch(reset());},3000)
+    setTimeout( ()=>{dispatch(reset());},200)
   }, [user, isError, isLoading, isSuccess, message, dispatch, navigate]);
 
   const onSubmit = (value) => {
-    console.log(selected)
+    
     const userData = {
       FirstName: value.FirstName,
       LastName: value.LastName,
@@ -78,7 +79,6 @@ const Signup = () => {
     <div>
       <Form
         onSubmit={onSubmit}
-        validate={validate}
         render={({ handleSubmit}) => (
           <form className=" g-3  mt-2 mx-12 shadow p-4  " onSubmit={handleSubmit}>
             <h3 className="ErrorMsg hidden text-red-400 -mt-3 mb-2 shadow-red-200 rounded-md shadow-inner p-2"> </h3>
@@ -90,15 +90,14 @@ const Signup = () => {
                   <input
                     {...input}
                     placeholder="lastName"
+                    required
                     className={
                       meta.touched && meta.error
                         ? " is-invalid  form-control"
                         : "form-control my-2 shadow-md shadow-gray-400"
                     }
                   />
-                  {meta.touched && meta.error && (
-                    <span className="invalid-feedback">{meta.error}</span>
-                  ) }
+                 
                 </div>
               )}
             /> 
@@ -110,15 +109,14 @@ const Signup = () => {
                      <input
                 {...input}
                     placeholder=" FirstName"
+                    required
                     className={
                       meta.touched && meta.error
                         ? " is-invalid  form-control"
                         : "form-control my-2 shadow-md shadow-gray-400"
                     }
                   />
-                  {meta.touched && meta.error && (
-                    <span className="invalid-feedback">{meta.error}</span>
-                  )}  
+                   
                 </div>
               )}
             />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
@@ -152,9 +150,7 @@ const Signup = () => {
                         : "form-control my-2 shadow-md shadow-gray-500"
                     }
                   />
-                  {meta.touched && meta.error && (
-                    <span className="invalid-feedback">{meta.error}</span>
-                  )}
+                 
                 </div>
               )}
             />
@@ -173,43 +169,46 @@ const Signup = () => {
                     className={
                       meta.touched && meta.error
                         ? " is-invalid  form-control"
-                        : "form-control  my-2 shadow-md shadow-gray-400"
+                        : "form-control  mt-2 shadow-md shadow-gray-400"
                     }
                   />
-                  {meta.touched && meta.error && (
-                    
-                    <span className="invalid-feedback">{meta.error}</span>
-                    
-                  )}
+                  
                 </div>
               )}
             />
             
             <Field
               name="Password"
-              render={({ input, meta }) => (
+              render={({ input, meta }) => (<>
                 <div className={meta.active ? "active" : "border-l-4 my-3  border-yellow-400"}>
                   <input
                     {...input}
                    required
                     type="password"
+                    id="Password"
                     placeholder="Password"
                     className={
                       meta.touched && meta.error
-                        ? " is-invalid  form-control"
-                        : "form-control my-2 shadow-md shadow-gray-400"
+                      ? " is-invalid  form-control my-2"
+                      : "form-control my-2 shadow-md shadow-gray-400"
                     }
-                  />
+                  /> </div>
+                    
                   {meta.touched && meta.error && (
-                  <span className="invalid-feedback">{meta.error}</span>
-                   
-                  )}
-                </div>
+                    <span className="invalid-feedback -mt-3">{meta.error}</span>
+                    
+                    )}
+                </>
               )}
             />
+            <label htmlFor='show' className="-ml-24 -my-3 mt-0"> 
+    <input type="checkbox" 
+    value="" onChange={onchange} onClick={showPass} id='show'/> 
+      Show Password</label> 
 
             <div className="form-check">
-              <input
+             
+      <input
                 className="form-check-input m-1"
                 type="checkbox"
                 value=""

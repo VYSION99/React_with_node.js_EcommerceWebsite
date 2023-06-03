@@ -20,6 +20,20 @@ const API = axios.create({
  return data
 
 }
+ export  const PasswordRecoveryApi = async (userData)=>{
+
+ const response = await  API.post(API_user_Url +"reset/recovery",userData )
+ const data = response.data;
+ 
+ return data
+
+}
+ export  const PasswordResetApi = async (userData)=>{
+
+ const response = await  API.post(API_user_Url +"reset",userData )
+ const data = response.data; return data
+
+}
  export  const UserLogApi = async (userData)=>{
 
  const response = await  API.post(API_user_Url + "login",userData )
@@ -49,3 +63,6 @@ export const AdminLogApi =async (AdminData)=>{
    return response.data
 }
 
+export const LogOut = async ()=>{
+   localStorage.removeItem("user")
+}

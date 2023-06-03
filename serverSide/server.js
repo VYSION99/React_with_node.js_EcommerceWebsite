@@ -20,7 +20,9 @@ import app from './app.js'
 
 mongoose.connect(process.env.mongoUrl, {
     useNewUrlParser:true,
-    useUnifiedTopology:true
+    useUnifiedTopology:true,
+    autoIndex:true,
+ 
 } ).then(()=> {
 
 app.listen(port, ()=>{  

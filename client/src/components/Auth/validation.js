@@ -1,33 +1,9 @@
 export  const Regex = /^[a-zA-Z0-9.!#$%&'*+/=?^-`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9]+)*$/;
-   export const PSWD = /^(?=.*[1-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,15}$/;
+   export const PSWD = /^(?=.*[1-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/;
 
 // starter JavaScript for disabling form submissions if there are invalid fields
 
-export const validate = (values) => {
-  const error = {};
-  if (!values.FirstName) {
-    error.FirstName = " Firstname is required";
-  }
-  if (!values.LastName) {
-    error.LastName = " Lastname is required";
-  }
-  if (!values.Email) {
-    error.Email = " email field is required";
-  }else{
-    if(!values.Email.match(Regex)){
-      error.Email = "provided email is invalid";
-    }
-  }
-  if (!values.Password) {
-    error.Password = " password is required";
-  }else{
-    if(!values.Password.match(PSWD)){
-      error.Password = " Use @ least 6 to 15 characters ,number and Symbols";
-    }
-  }
-  
-  return error;
-};
+
   
   
   //for the next form drop down
@@ -56,7 +32,7 @@ export  const signUp = (e)=>{
     hr1.classList.remove("opacity-50")
     Login.classList.add("hidden");
     setTimeout(()=>{
-      HeaderMsg.innerText = "Register On Online Super Market"
+      HeaderMsg.innerText = "Register On Codecamps SuperStore"
     },1000)
   }
 
@@ -74,7 +50,7 @@ export  const signUp = (e)=>{
     hr1.classList.add("opacity-50")
     hr2.classList.remove("opacity-50")
     setTimeout(()=>{
-      HeaderMsg.innerText = "Login To Online Super Market"
+      HeaderMsg.innerText = "Login To Codecamps SuperStore"
     },1500)
   }
 }
@@ -86,12 +62,22 @@ export  const signUp = (e)=>{
  imgFlag.style.dispaly= "none";
 
   } */
-    export const Showpassword = ()=>{
+   
+     export const showPass = ()=>{
       var x = document.querySelector("#Password")
-        if(x.type ==="password"){
+      var y = document.querySelector("#Password1")
+      
+        if(x.type ==="password" || y.type ==="password"){
           x.type = "text"
-        }else{x.type = "password"}
-    } 
+          y.type = "text"
+        }else{
+          x.type = "password"
+          y.type = "password"
+        }
+      
+       }
+    
+   
    
    
 

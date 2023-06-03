@@ -3,13 +3,16 @@ import BackgroundImg from "../../assets/laptop.png"
 import {login,signUp } from "./validation";
 import LoginForm from  "./logIn"
 import Signup from "./Signup"
-import Spinner from "../spinner"
+import {useSelector} from "react-redux"
+
 
 function Auth() {
 
-  return (
-      <div className="container-fluid  z[100] overflow-x-hidden">
+return (
+  <div className="container-fluid  z[100] overflow-x-hidden">
+       
         <div className="row">
+    
           <div className=" bg-silver mb-4 col-auto col-md-6 col-lg-4">
               <div className="">
                 <img
@@ -39,7 +42,7 @@ function Auth() {
                     </ul>
                   </center>
                   <h1  className="msg text-center shadow-md font-bold text-lg 
-                   fst-italic mb-3 -mt-2 rounded-md">Register On Online Super Market</h1>
+                   fst-italic mb-3 -mt-2 rounded-md">Register On Codecamps SuperStore</h1>
                   <center className="container " id="SignUp">
                   <Signup />
                   </center>
@@ -53,7 +56,7 @@ function Auth() {
             style={{ backgroundImage: `url(${BackgroundImg})` }}
           >
             Second Column
-            <Spinner />
+          
           </div>
         </div>
     </div>
