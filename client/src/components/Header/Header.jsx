@@ -1,3 +1,4 @@
+import { useSelector} from "react-redux"
 
 
 
@@ -9,14 +10,17 @@ import NavList from  "./navList"
 
 
 function Header() {
+const {user} = useSelector((state)=> state.auth || state.Admin)
+
   return (
     <div  className='mb-28'>
 
-<nav className=" pb-2 navbar my-2 z-50  overflow-x-hidden navbar-light bg-current  flex fixed-top rounded">
+<nav className="  navbar mb-2 mt-0 z-100 bg-current navbar-light   flex fixed-top rounded">
  
 {/*nav lists */}
+{user ? <NavList />: ""}
+
 < Logo />
-<NavList />
 
 
     { /* navbar list */ }

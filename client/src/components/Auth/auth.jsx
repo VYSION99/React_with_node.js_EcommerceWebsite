@@ -17,7 +17,7 @@ return (
               <div className="">
                 <img
                   src="/codecamps.svg"
-                  className="mx-auto md:w-24 w-12 mt-5 lg:24 mb-3"
+                  className="mx-auto md:w-24 w-12 mt-5 lg:24 mb-2 rounded-3xl"
                   alt=""
                 />
                 <span>

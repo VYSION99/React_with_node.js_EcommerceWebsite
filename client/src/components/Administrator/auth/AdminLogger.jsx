@@ -1,7 +1,7 @@
 import {useState , useEffect} from 'react'
 import {useDispatch,useSelector} from "react-redux"
 import {useNavigate} from 'react-router-dom'
-import { AdminLog, reset} from '../../../redux/authRudux/AdminLogSlice' 
+import { AdminLog, reset} from '../../../redux/authRudux/adminSlice' 
 function Logger() {
  
 

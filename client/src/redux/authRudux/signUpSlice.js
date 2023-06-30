@@ -1,5 +1,6 @@
 import {createAsyncThunk,createSlice }  from "@reduxjs/toolkit"
-import {UserApi,UserLogApi ,LogOut,PasswordRecoveryApi,PasswordResetApi} from '../../Api/api';
+import {UserApi,UserLogApi,LOGOUTapi ,PasswordRecoveryApi,PasswordResetApi} from '../../Api/api';
+//import { useNavigate } from 'react-router-dom';
 
 // get user data from localStorage
 const user = JSON.parse(localStorage.getItem('user'));
@@ -58,7 +59,13 @@ export const PasswordRecovery = createAsyncThunk('auth/recovery', async ( user,t
         })
                  //=> User Logout Action
 export const Logout = createAsyncThunk('auth/logout', async  ()=>{
-    LogOut() 
+ try {
+    
+await LOGOUTapi()
+
+ } catch (error) {
+    error.log("logout failed")
+ }
 })
   //=>User slice
 
@@ -145,9 +152,15 @@ export const authSlice = createSlice({
             state.isError = true
             state.message = action.payload
 
+        }).addCase(Logout.pending , (state)=>{
+            state.isLoading = true
+            state.isError = false
+            state.isSuccess = false
         })
         .addCase(Logout.fulfilled, (state)=>{
-            state.user = null
+               state.user = null,
+               state.isSuccess = true
+          
         })
     }
 })

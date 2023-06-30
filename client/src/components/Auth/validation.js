@@ -7,10 +7,10 @@ export  const Regex = /^[a-zA-Z0-9.!#$%&'*+/=?^-`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
   
   
   //for the next form drop down
-  export  const FormNext = (e)=>{
-    const more = document.getElementById("more")
-    e.preventDefault();
-    e.stopPropagation()
+  export  const Slider = (e)=>{
+    const more = document.querySelector(".more")
+    // console.log(more)
+    
   if(more.classList.contains("hidden")){
     more.classList.remove("hidden")
   }else{

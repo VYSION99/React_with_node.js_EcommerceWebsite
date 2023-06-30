@@ -12,10 +12,11 @@ import UserRouter from "./Routing/UserRoute.js";
 import AdminRouter from  "./Routing/AdminRoute.js"
 
 
+
  const app = express();
  //app.enable('trust proxy') 
 //app.use(express.static(path.resolve(__dirname,'..', 'client','build')));
-
+ 
 app.use(compression())
 app.use(helmet())
 app.use(cors())
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({limit: '10mb' , extended:true}))
 
 app.use('/api/v1/user/' , UserRouter);
 app.use('/api/v1/Admin/', AdminRouter);
+//app.use('/api/v1/', ProductRouter);
 
 
 

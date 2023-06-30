@@ -9,3 +9,7 @@ export const motion = (spin) =>{
 
     return loader
 }
+
+export const once = {
+    animationIterationCount: 1,
+}

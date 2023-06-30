@@ -1,14 +1,14 @@
-import React from 'react'
+
 
 function SlideShow() {
   return (
     <>
-    <button className="navbar-toggler p-1  bg-yellow-400" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+    <button className="navbar-toggler p-1 ml-2 bg-yellow-400" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
       aria-controls="offcanvasNavbar">
       <span className="navbar-toggler-icon"></span>
     </button> 
     
-    <div className="offcanvas rounded mt-24  offcanvas-start" tabIndex="-1" id="offcanvasNavbar"
+    <div className="offcanvas rounded mt-24 border-r-shadow offcanvas-start" tabIndex="-1" id="offcanvasNavbar"
       aria-labelledby="offcanvasNavbarLabel">
       <div className="offcanvas-header justify-content-center">
         <h5 className="offcanvas-title" id="offcanvasNavbarLabel"></h5>

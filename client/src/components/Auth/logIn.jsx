@@ -58,7 +58,7 @@ const log = () => {
 
   return (
     <div>
-      <form className=" mx-12  gap-2 shadow p-3 " onSubmit={SubmitForm}>
+      <form className=" mx-6  gap-2 shadow p-3 " onSubmit={SubmitForm}>
         <small className="text-red-600 font-extralight error"></small>
         <div className=" shadow-sm my-3 mb-2">
           <input
@@ -67,7 +67,7 @@ const log = () => {
                 ? "form-control  "
                 : CheckEmail
                 ? "form-control  is-valid"
-                : "form-control   is-invalid "
+                : "form-control animate-bounce   is-invalid "
             }
             type="email"
             placeholder="Email"
@@ -87,7 +87,7 @@ const log = () => {
                 ? "form-control  "
                 : CheckPassword
                 ? "form-control  is-valid"
-                : "form-control is-invalid "
+                : "form-control animate-bounce is-invalid "
             }
             type="Password"
             placeholder="Password"
@@ -105,14 +105,23 @@ const log = () => {
             Strong Password
           </span>
         </div>
-        <label htmlFor='show' className="ml-3 my-3"> 
+       <div className="flex my-3 justify-between">
+      
+      <small>
+         <label htmlFor='show1' className=""> 
     <input type="checkbox" 
-    value={checked} onChange={onchange} onClick={showPass} id='show' name=''/> 
-      Show Password</label>
+    value={checked} onChange={onchange} 
+    onClick={showPass} id='show1' name=''/> 
+     ShowPassword</label>
+    </small>
+       <small className="text-center md:font-medium lg:font-semibold ">
+       < Link to="/recovery/reset">ForgetPassword</Link>
+       </small>
+       </div>
         <div className="">
           <button
             type="submit"
-            className="btn bg-green-200 form-control"
+            className=" bg-green-200 form-control"
             disabled={isLoading}
           >
             {isLoading ? (

@@ -1,5 +1,5 @@
 import {createAsyncThunk,createSlice }  from "@reduxjs/toolkit"
-import {AdminApi} from '../../Api/api';
+import {AdminApi,AdminLogApi} from '../../Api/api';
 
 // get admin data from localStorage
 const admin = JSON.parse(localStorage.getItem('Admin'));
@@ -11,7 +11,7 @@ const initialState ={
     message:''
 }
 
-export const Admin= createAsyncThunk('AdminLogger/Log', async ( admin,thunkAPI) =>{
+export const Admin= createAsyncThunk('AdminLogger/resg', async ( admin,thunkAPI) =>{
     try {
         return await AdminApi(admin)
     } catch (error) {
@@ -21,7 +21,15 @@ export const Admin= createAsyncThunk('AdminLogger/Log', async ( admin,thunkAPI) 
             }
         })
 
-
+        export const AdminLog= createAsyncThunk('AdminLogger/Log', async ( admins,thunkAPI) =>{
+            try {
+                return await AdminLogApi(admins)
+            } catch (error) {
+              const message =  error.response.data
+                   || error.message || error.toString();
+                     return  thunkAPI.rejectWithValue(message)
+                    }
+                })
 
 //.log(ErrorMsg)
 export const AdminSlice = createSlice({
@@ -50,6 +58,23 @@ export const AdminSlice = createSlice({
 
         })
         .addCase(Admin.fulfilled, (state,action)=>{
+            state.isLoading = false
+            state.isError = false
+            state.isSuccess = true
+            state.admin= action.payload
+        })
+        .addCase(AdminLog.pending , (state)=>{
+            state.isLoading = true
+            state.isError = false
+            state.isSuccess = false
+        })
+         .addCase(AdminLog.rejected , (state,action)=>{
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+
+        })
+        .addCase(AdminLog.fulfilled, (state,action)=>{
             state.isLoading = false
             state.isError = false
             state.isSuccess = true

@@ -1,32 +1,48 @@
-import {FaSearch} from "react-icons/fa"
+import {FaSearch ,FaUser} from "react-icons/fa"
 import SlideShow from "./SlideShow"
+import DataUser from "./userdata"
+import {Slider } from "../Auth/validation"
+import { useSelector} from "react-redux"
 
 
 function logo() {
+  const {user} = useSelector((state)=> state.auth || Admin)
   return (
     <>
 
  <div className=" container ">
-     <img src="/codecamps.svg" alt="home logo" className=" w-10 rounded-full p-0 rounded-r-full" />
+     <div className="flex m-1 mb-0 ">
+     <img src="/codecamps.svg" alt="home logo" className=" w-10 mr-5 fill-current rounded-full bg-opacity-10" />
     {/*search form */}
-    <form className="">
+    <form className="mt-1">
         <i>
-        <FaSearch className="fill-yellow-500  absolute top-4 ml-2  h-5 w-5 m-1 "   />
+        <FaSearch className="fill-current  absolute top-15 ml-56 -rotate-12 opacity-40 
+        h-2 w-2 lg:h-4 lg:w-4 md:h-3 md:w-3 mt-2 bg-blend-hue "   />
           <input 
           className=" form-control rounded-tr-none 
            w-24 p-1 text-center text-clip   md:w-auto lg:w-auto"
            type="search" placeholder="search"
             aria-label="Search" />
-          </i>
+        </i>
          
         </form>
-        <div className=" flex h-10 border-lime-300 border-r-l">
-    
-    {/*nav button */}
+     </div>
+        <div className=" flex h-10 justify-between">
+              {/*nav button */}
+              {user ? <h2  onClick={Slider} className="shadow-sm flex rounded-b-full rounded-l-full p-2 bg-yellow-500   "  >
+          <FaUser className="w-5 h-7 "/>
+        </h2> : ""}
+             
+             
+             {/* */}
              <SlideShow />
         </div>
-     
+    
     </div>
+    <div className=" hidden more top-24  absolute glading bg-opacity-70 
+    rounded-md right-3 p1 md:right-3 lg:right-1 outline-double bg-slate-200 ">
+     <DataUser className="rounded-md "/>
+     </div>
     </>
   )
 }

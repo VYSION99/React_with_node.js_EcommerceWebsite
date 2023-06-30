@@ -28,11 +28,12 @@ const onchange = (e)=>{
 useEffect(()=>{
   const msg= document.querySelector(".errorMsg")
 if(isError)msg.innerText = message.msg
-if(isSuccess)msg.innerText = message.msg
+if(isSuccess){
+  msg.innerText = message.msg
 
 setTimeout(()=>{
   Dispatch(reset())
-},12000)
+},7000)}
 },[isLoading,isError,message,isSuccess,navigate])
 
 

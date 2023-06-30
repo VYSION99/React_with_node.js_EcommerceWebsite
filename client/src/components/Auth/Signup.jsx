@@ -24,13 +24,14 @@ const Signup = () => {
     //=> RETURNING AN OBJ OF COUNTRY NOT LIST
     const countryObj = Countries.getNames('en',{select:'official'})
     
-    const countryArr = Object.entries(countryObj).map(([key,value])=>{
-      return {
-        value: key,
-        label: value,
-       }
-     })
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    const countryArr = Object.entries(countryObj).map(([key,value])=>{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      return {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        value: key,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        label: value,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    })
   const [selected,setSelected] = useState(null)
+  
 
   const Selecthandler = (selected)=>{
     setSelected(selected.label)
@@ -80,7 +81,7 @@ const Signup = () => {
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit}) => (
-          <form className=" g-3  mt-2 mx-12 shadow p-4  " onSubmit={handleSubmit}>
+          <form className=" g-3  mt-2 mx-6 shadow p-3  " onSubmit={handleSubmit}>
             <h3 className="ErrorMsg hidden text-red-400 -mt-3 mb-2 shadow-red-200 rounded-md shadow-inner p-2"> </h3>
            <Field
               name="LastName"
@@ -104,7 +105,7 @@ const Signup = () => {
             <Field
               name="FirstName"
               render={({ input, meta }) => (
-                <div className={meta.active ? "active" : "border-l-4 my-3  border-orange-500"}>
+                <div className={meta.active ? "active" : "border-r-4 my-3  border-orange-500"}>
                     
                      <input
                 {...input}
@@ -141,7 +142,7 @@ const Signup = () => {
             <Field
               name="City"
               render={({ input, meta }) => (
-                <div className={meta.active ? "active" : "border-l-4 my-3  border-lime-500"}>
+                <div className={meta.active ? "active" : "border-r-4 my-3  border-lime-500"}>
                   <input
                     {...input}
                     placeholder="Enter your City"
@@ -180,7 +181,7 @@ const Signup = () => {
             <Field
               name="Password"
               render={({ input, meta }) => (<>
-                <div className={meta.active ? "active" : "border-l-4 my-3  border-yellow-400"}>
+                <div className={meta.active ? "active" : "border-r-4 my-3  border-yellow-400"}>
                   <input
                     {...input}
                    required
@@ -197,34 +198,36 @@ const Signup = () => {
                   {meta.touched && meta.error && (
                     <span className="invalid-feedback -mt-3">{meta.error}</span>
                     
-                    )}
-                </>
-              )}
-            />
-            <label htmlFor='show' className="-ml-24 -my-3 mt-0"> 
+                    )}<small>
+              <label htmlFor='show' className="-ml-48 -my-3 -mt-2"> 
     <input type="checkbox" 
     value="" onChange={onchange} onClick={showPass} id='show'/> 
       Show Password</label> 
+      </small>
+                </>
+              )}
+              
+            />
+            
+            
 
-            <div className="form-check">
-             
-      <input
-                className="form-check-input m-1"
+            <small className="form-check lg:font-semibold md:font-medium">
+              <label htmlFor="invalidCheck" className=""><input
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="invalidCheck"
                 required
-              />
-              <p>Agree to terms and conditions</p>
+              />Agree to terms and conditions</label>
 
               
-            </div>
+            </small>
 
             <div className="m-2">
             
             <button
             type="submit"
-            className="btn bg-green-200 form-control"
+            className=" bg-green-200 form-control"
             disabled={isLoading}
           >
             {isLoading ? (

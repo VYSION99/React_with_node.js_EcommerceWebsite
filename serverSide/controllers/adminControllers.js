@@ -19,7 +19,7 @@ export const getAdmin=(req,res)=>{
     res.json("success")
 } 
 export const setAdmin = AsyncHandler( async (req,res)=>{   
-    console.log(req.body)
+    
  const { Firstname, Lastname, Email} = req.body
 Id_generator(Firstname,Lastname) 
 
@@ -63,7 +63,7 @@ if(AdminUser){
         AdminName : AdminUser.AdminName, 
         Email : AdminUser.Email ,
         _Id: AdminUser._id,
-        token: adminToken(AdminUser.id)
+        token: adminToken(AdminUser.id)  
      })
 }};
 
@@ -77,7 +77,6 @@ export  const LogAdmin = AsyncHandler( async (req,res)=>{
     const  { role , AdminId} = req.body;
     const Rolled = await Admin.findOne({role});
 
-   console.log(Rolled)
 
     if( Rolled && ( await bcrypt.compare(AdminId ,Rolled.AdminId))){
         res.status(200).json({

@@ -63,6 +63,6 @@ export const AdminLogApi =async (AdminData)=>{
    return response.data
 }
 
-export const LogOut = async ()=>{
-   localStorage.removeItem("user")
+export const LOGOUTapi = async ()=>{
+ localStorage.removeItem("user");
 }
