@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
-let image = []
-//export let files;
-const MyUploader = (props) => {
+ //export let image 
+export let files;
+const MyUploader = () => {
     
- const [files, setFiles] = useState([])
+ const 
+ [files, setFiles] = useState([])
   
 // called every time a file's `status` changes
 const handleChangeStatus = ({ meta, file }, status) => { 
@@ -17,8 +18,8 @@ const handleChangeStatus = ({ meta, file }, status) => {
     // run your callback here
     console.log('All files uploaded')
     }
-    }
-    image = files;
+    }  
+   
   
     return (
       <Dropzone
@@ -28,5 +29,5 @@ const handleChangeStatus = ({ meta, file }, status) => {
       />
     )
   }
-   export image;
+   
   export default MyUploader

@@ -16,4 +16,4 @@ AdminRouter.route("/Log").post(LogAdmin);
 
 
 
-export default AdminRouter
+export default AdminRouter  
