@@ -2,7 +2,8 @@ import {useState} from 'react'
 import {useSelector} from "react-redux"
 import {Form ,Field} from  "react-final-form"
 import Select from 'react-select'
-import Image,{files} from "../Administrator/Dropzone"
+import {Uploader,Images} from "../Administrator/Dropzone";
+import {productData} from "../Administrator/product_Array"
 
 function AdminHome() {
   const {Admin, isLoading,isSuccess } = useSelector((state) =>(state.Admin))
@@ -11,8 +12,12 @@ const [selected,setSelected] = useState(null)
   const Selecthandler = (selected)=>{
     setSelected(selected.label)
     }
+    //console.log(files)
   const onSubmit = (value)=>{
-console.log(value)
+const {Categorys,Brands,Price,ProductName,Description} = value;
+const Brand = Brands.label;  const Category = Categorys.label; const Image =Images.name
+const ProductData ={ Brand,Category,Price,ProductName,Description,Image}
+console.log(ProductData)
   }
   const category = { fh:'Fashion' ,fo:'Food',tech:'Technology'}
   const categoryArr = Object.entries(category).map(([key,value])=>{
@@ -21,6 +26,8 @@ console.log(value)
       label: value,
      }
    })
+   const { FashionCategorys,FashionData,FoodCategorys,
+    FoodData,TechnologyCategorys,accessoriesData} = productData
   return (
     <div>
 
@@ -29,41 +36,119 @@ console.log(value)
         render={({ handleSubmit}) => (
           <form className=" g-3  mt-2 mx-6 shadow p-3  " onSubmit={handleSubmit}>
             <h3 className="ErrorMsg hidden text-red-400 -mt-3 mb-2 shadow-red-200 rounded-md shadow-inner p-2"> </h3>
-          
-           
+          <div className="">
+            <label htmlFor="image">ProductImage* </label>
+          </div>
+           <Uploader id ="image" className="bg-dark"  />
             <Field
-              name="State"
+              name="option"
               render={({  meta }) => (
                 <div className={meta.active ? "active" : "border-l-4 my-3  border-lime-500"}>
                   <Select 
-                        placeholder='choose your Category'
+                        placeholder='What to Publish'
                         options={categoryArr}
                         onChange={Selecthandler}
                         className='bg-opacity-90  text-center rounded-md shadow-md shadow-gray-500'
                       />
                      </div>
                   )}
-               
-              
-            />
-            {selected ? <Field
-              name="City"
+             />
+           
+                    
+                {selected == "Food"?
+                <>
+                <Field
+              name="Brands"
               render={({ input, meta }) => (
                 <div className={meta.active ? "active" : "border-r-4 my-3  border-lime-500"}>
-                  <input
-                    {...input}
-                    placeholder="Enter your City"
-                    className={  meta.touched && meta.error                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                        ? " is-invalid  form-control"
-                        : "form-control my-2 shadow-md shadow-gray-500"
-                    }
-                  />
+                  <Select 
+                        placeholder='Choose product Brand'
+                        options={FoodData}
+                        {...input}
+                        required
+                        className='bg-opacity-90  text-center rounded-md shadow-md shadow-gray-500'
+                      />
                  
                 </div>
               )}
-            /> : ""}
-                    
-                  
+            />
+                <Field
+              name="Categorys"
+              render={({input,  meta }) => (
+                <div className={meta.active ? "active" : "border-l-4 my-3  border-lime-500"}>
+                  <Select 
+                        placeholder='Choose Product Category'
+                        options={FoodCategorys}
+                       {...input}
+                       required
+                        className='bg-opacity-90  text-center rounded-md shadow-md shadow-gray-500'
+                      />
+                     </div>
+                  )}
+             />
+                </>
+                :selected == "Fashion" ?
+                <>
+                <Field
+              name="Brands"
+              render={({ input, meta }) => (
+                <div className={meta.active ? "active" : "border-r-4 my-3  border-lime-500"}>
+                  <Select 
+                        placeholder='choose your Category'
+                        options={FashionData}
+                        {...input}
+                        className='bg-opacity-90  text-center rounded-md shadow-md shadow-gray-500'
+                      />
+                 
+                </div>
+              )}
+            />
+                
+                <Field
+                name="Categorys"
+                render={({input,  meta }) => (
+                  <div className={meta.active ? "active" : "border-l-4 my-3  border-lime-500"}>
+                    <Select 
+                          placeholder='choose your Category'
+                          options={FashionCategorys}
+                          {...input}
+                          className='bg-opacity-90  text-center rounded-md shadow-md shadow-gray-500'
+                        />
+                       </div>
+                    )}
+               /></>
+                :selected == "Technology" ?
+                <>
+                
+                <Field
+              name="Brands"
+              render={({ input, meta }) => (
+                <div className={meta.active ? "active" : "border-r-4 my-3  border-lime-500"}>
+                  <Select 
+                        placeholder='choose your Category'
+                        options={accessoriesData}
+                        {...input}
+                        className='bg-opacity-90  text-center rounded-md shadow-md shadow-gray-500'
+                      />
+                 
+                </div>
+              )}
+            />
+
+                <Field
+                name="Categorys"
+                render={({input,  meta }) => (
+                  <div className={meta.active ? "active" : "border-l-4 my-3  border-lime-500"}>
+                    <Select 
+                          placeholder='choose your Category'
+                          options={TechnologyCategorys}
+                          {...input}
+                          className='bg-opacity-90  text-center rounded-md shadow-md shadow-gray-500'
+                        />
+                       </div>
+                    )}
+               /></>
+                :''}  
         
             <Field
               name="ProductName"
@@ -84,9 +169,47 @@ console.log(value)
                 </div>
               )}
             />
+            <Field
+              name="Price"
+              render={({ input, meta }) => (
+                <div className={meta.active ? "active" : "border-l-4 my-3  border-yellow-400"}>
+                  <input
+                    {...input}
+                  required
+                    type="text"
+                    placeholder="Name your Price"
+                    className={
+                      meta.touched && meta.error
+                        ? " is-invalid  form-control"
+                        : "form-control  mt-2 shadow-md shadow-gray-400"
+                    }
+                  />
+                  
+                </div>
+              )}
+            />
+            <Field
+              name="Description"
+              render={({ input, meta }) => (
+                <div className={meta.active ? "active" : "border-l-4 my-3  border-yellow-400"}>
+                  <textarea
+                    {...input}
+                  required
+                    type="text"
+                    placeholder=" Describe the product"
+                    className={
+                      meta.touched && meta.error
+                        ? " is-invalid  form-control"
+                        : "form-control  mt-2 shadow-md shadow-gray-400"
+                    }
+                  />
+                  
+                </div>
+              )}
+            />
             
-                      <Image className="bg-dark"  />
-            {console.log(files)}
+                      
+            
             
 
             <small className="form-check lg:font-semibold md:font-medium">
@@ -119,7 +242,7 @@ console.log(value)
                 Loading...
               </div>
             ) : (
-              " submit"
+              "Publish"
             )}
           </button>
             
