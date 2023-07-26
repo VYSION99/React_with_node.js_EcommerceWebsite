@@ -1,24 +1,27 @@
 import {useState} from 'react'
-import {useSelector} from "react-redux"
+import {useSelector , useDispatch} from "react-redux"
 import {Form ,Field} from  "react-final-form"
 import Select from 'react-select'
 import {Uploader,Images} from "../Administrator/Dropzone";
 import {productData} from "../Administrator/product_Array"
+import {createProduct} from "../../redux/authRudux/productSlice"
 
 function AdminHome() {
-  const {Admin, isLoading,isSuccess } = useSelector((state) =>(state.Admin))
-
+  const { IsLoading,Ispublished } = useSelector((state) =>(state.Product))
+  const dispact = useDispatch()
 const [selected,setSelected] = useState(null)
   const Selecthandler = (selected)=>{
     setSelected(selected.label)
     }
     //console.log(files)
   const onSubmit = (value)=>{
-const {Categorys,Brands,Price,ProductName,Description} = value;
+const {Categorys,Brands,Price,ProductName,Des} = value;
 const Brand = Brands.label;  const Category = Categorys.label; const Image =Images.name
-const ProductData ={ Brand,Category,Price,ProductName,Description,Image}
-console.log(ProductData)
+const ProductData ={ Brand,Category,Price,ProductName,Des,Image}
+dispact(createProduct(ProductData))
   }
+
+  // checking the field array 
   const category = { fh:'Fashion' ,fo:'Food',tech:'Technology'}
   const categoryArr = Object.entries(category).map(([key,value])=>{
     return {
@@ -189,7 +192,7 @@ console.log(ProductData)
               )}
             />
             <Field
-              name="Description"
+              name="Des"
               render={({ input, meta }) => (
                 <div className={meta.active ? "active" : "border-l-4 my-3  border-yellow-400"}>
                   <textarea
@@ -229,9 +232,9 @@ console.log(ProductData)
             <button
             type="submit"
             className=" bg-green-200 form-control"
-            disabled={isLoading}
+            disabled={IsLoading}
           >
-            {isLoading ? (
+            {IsLoading ? (
               <div>
                 {" "}
                 <span

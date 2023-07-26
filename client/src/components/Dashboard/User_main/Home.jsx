@@ -1,8 +1,9 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import {motion} from "../services/MotionRender"
-import Spinner from '../services/spinner'
+import {motion} from "../../services/MotionRender"
+import Spinner from '../../services/spinner'
+import ProfileList, {ProfileContent} from "./utils/navList"
 
 
 function Home() {
@@ -18,13 +19,18 @@ navigate("/")
   return (
     <>
     {user ? loader = motion(true): ""}
-    <div className="container">
-        <h1 className="bg-yellow-400">
-            you are highly welcome
+    <div  >
+        <div className=" flag object-cover w-full">
+          
+          <div className="content bg-dark  justify-items-center opacity-70 ">
+            <ProfileList  />
+          </div>
+        </div>
+           <ProfileContent />
 
             
           
-        </h1>
+        
         {loader? <Spinner />:""}
     </div>
     

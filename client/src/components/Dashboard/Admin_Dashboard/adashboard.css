@@ -1,0 +1,43 @@
+.features{
+    flex: 4;
+    width: 100%;
+    overflow-x: hidden;
+}
+.icon{
+    font-size: medium;
+    opacity: 90%;
+    margin-right: 13px !important;
+    margin-top: 0px !important;
+    fill-opacity: 60%; 
+    height: 20px;
+    width:20px;
+}
+.items{
+    border-radius: 5px;
+}
+
+.nob{
+    justify-content: space-between !important;
+    justify-items: center;
+    font-size: x-small;
+    width: 100% ;
+
+}
+.featuresRevenue{
+width: calc(30%);
+background-color: blueviolet;
+}
+.featuresExpenditure{
+width: calc(30%);
+background-color: blueviolet;
+}
+.featuresSales{
+width: calc(30%);
+background-color: blueviolet;
+}
+.Fnt{
+    font-size: x-small;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+ 
+

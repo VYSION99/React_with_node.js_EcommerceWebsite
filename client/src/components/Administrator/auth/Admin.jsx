@@ -1,7 +1,7 @@
 import {useState , useEffect} from 'react'
 import {useDispatch,useSelector} from "react-redux"
 import {useNavigate} from 'react-router-dom'
-import {Regex} from '../../Auth/validation'
+import {Regex} from '../../UserAuth/validation'
 import { Admin ,reset} from '../../../redux/authRudux/adminSlice'
 
 function Logger() {
@@ -13,9 +13,9 @@ function Logger() {
   
   const navigate = useNavigate()
   const Dispatch = useDispatch()
-const {isLoading,isError,admin,message,isSuccess} = useSelector((state)=> state.AdminSign)
+const {isLoading,isError,admin,message,isSuccess} = useSelector((state)=> state.Admin)
 
-
+//console.log(message)
 const {Lastname,Firstname,Email} = formData
 
 
@@ -53,7 +53,7 @@ const SubmitForm = (e)=>{
  
 
   return (
-    <div className=" mx-80 mt-40  mb-0 shadow-lg rounded-sm">
+    <div className="  mb-0 shadow-lg rounded-sm">
       <h1 className="fst-italic font-bold shadow-md p-2 text-center mx-6">
         Authorize your Admin credentials </h1>
       <center className="container bg-center justify-center p-3 shadow-lg my-3 ">

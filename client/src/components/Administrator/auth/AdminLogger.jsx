@@ -11,7 +11,7 @@ function Logger() {
   
   const navigate = useNavigate()
   const Dispatch = useDispatch()
-const {isLoading,isError,admin,message,isSuccess} = useSelector((state)=> state.AdminLogs)
+const {isLoading,isError,admin,message,isSuccess} = useSelector((state)=> state.Admin)
 
 
 const {AdminId,role} = formData
@@ -30,9 +30,9 @@ if(isError){
   document.querySelector(".errorMsg").innerText = message.msg
 }
 
-if(isSuccess && admin){ navigate("/admin/v1/home") }
+if(isSuccess && admin){ navigate("/Admindashboard") }
 
-if(isSuccess){ Dispatch(AdminLog(reset()))}
+if(isSuccess){ Dispatch(reset())}
 },[isLoading,isError,message,admin,isSuccess,navigate])
 
 
@@ -47,7 +47,7 @@ const SubmitForm = (e)=>{
  
 
   return (
-    <div className=" mx-80 mt-40  mb-0 shadow-lg rounded-sm">
+    <div className="   mb-0 shadow-lg rounded-sm">
       <h1 className="fst-italic font-bold shadow-md p-2 text-center mx-6">
         Authorize your AdminID </h1>
       <center className="container bg-center justify-center p-3 shadow-lg my-3 ">

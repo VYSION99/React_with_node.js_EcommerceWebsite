@@ -10,7 +10,7 @@ import { protectAdminRoute } from "../middleware/authMiddleware.js";
 
  const AdminRouter = express.Router();
 AdminRouter.route("/").post(setAdmin).get(protectAdminRoute, getAdmin)
-AdminRouter.route("/products/").post(ProductHandler);
+AdminRouter.route("/products/").post(protectAdminRoute,ProductHandler);
 AdminRouter.route("/").put(updateAdmin);
 AdminRouter.route("/Log").post(LogAdmin);
 

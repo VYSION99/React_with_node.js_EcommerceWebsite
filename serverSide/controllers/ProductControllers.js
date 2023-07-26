@@ -1,7 +1,7 @@
 import {product} from '../models/userModels.js'
 import AsyncHandler from "express-async-handler";
 const {ProductBrand,ProductItem} = product
-console.log(product)    
+
 
 export const ProductHandler = AsyncHandler ( async  (req,res)=>{
   const {Category,Brand, ProductName, Price, Image,Des } = req.body;
@@ -29,7 +29,9 @@ export const ProductHandler = AsyncHandler ( async  (req,res)=>{
                 ProductImage:Image, 
                 Descriptions:Des
             })
-            res.status(200).json({msg:"Product published successfully"})
+            res.status(200).json({
+                ProductName,Brand,Category,Price,ProductImage:Image,
+                msg:"Product published successfully"})
           }
         }
        

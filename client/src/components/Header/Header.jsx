@@ -2,30 +2,31 @@ import { useSelector} from "react-redux"
 
 
 
+
 //=> MODULES
 
 import Logo from  "./logo"
-import NavList from  "./navList"
+import NavUtils from "./NavUtils"
 
 
 
 function Header() {
-const {user} = useSelector((state)=> state.auth || state.Admin)
+const {user} = useSelector((state)=> state.auth)
+const admin = localStorage.getItem("admin")
 
   return (
-    <div  className='mb-28'>
-
-<nav className="  navbar mb-2 mt-0 z-100 bg-current navbar-light   flex fixed-top rounded">
+    <div className="Headercontainer mb-20 mt-0 "> 
+        
+      <div className=" fixed right-0 left-0 top-0 z-100">
+<nav  className="shadow-sm flex justify-between bg-slate-100 ">
  
 {/*nav lists */}
-{user ? <NavList />: ""}
-
-< Logo />
+<Logo />
 
 
-    { /* navbar list */ }
-    
+    <NavUtils/>
 </nav>
+      </div>
 
     </div>
   )

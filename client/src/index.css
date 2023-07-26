@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 .drop{
- 
-   
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-transform: capitalize;
     cursor :pointer;
@@ -28,4 +26,78 @@
         opacity: 100%;
         transform: translateX(0%);
     }
+}
+
+.flex-4{
+    flex: 4;
+}
+.flex-2{
+    flex: 2;
+}
+.flex-3{
+    flex: 3 ;
+}
+.flex-5{
+    flex: 5;
+}
+.redius{
+    border-radius: 50%;
+}
+.dashboard{
+    height: 100% !important;
+    flex-direction: column;
+}
+
+
+.Headercontainer {
+  width: 100%;
+  
+}
+
+.textLogo{
+    text-shadow: 2px 1px rgba(237, 87, 45, 0.5);
+    font-size: large;
+    font-weight:bold ;
+    background-color: linear-gradient( to right,aqua,gold);
+}
+
+.flag {
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    background-position: 0px 1px 3px 100px;
+    background-blend-mode: darken;
+    background-image: url("/image/proto.jpeg");
+    height: 12rem;
+    
+
+}
+
+.content{
+    background-color: black;
+    height: 12rem !important;
+    outline: invert;
+    border-radius: 5px;
+}
+
+.Ocontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay1 {
+  position: sticky;
+  z-index: 2;
+  height: 12rem;
+}
+
+.overlay2 {
+  position: relative;
+  z-index: 10; /* div2 will be on top */
+}
+
+.ico{
+    font-weight: lighter !important;
+    font-size: x-small;
+    height: 40px;
+
 }

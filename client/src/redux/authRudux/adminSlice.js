@@ -25,8 +25,8 @@ export const Admin= createAsyncThunk('AdminLogger/resg', async ( admin,thunkAPI)
             try {
                 return await AdminLogApi(admins)
             } catch (error) {
-              const message =  error.response.data
-                   || error.message || error.toString();
+               
+             const message =  error.response.data || error.message || error.toString();
                      return  thunkAPI.rejectWithValue(message)
                     }
                 })

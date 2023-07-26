@@ -13,3 +13,4 @@ export const motion = (spin) =>{
 export const once = {
     animationIterationCount: 1,
 }
+

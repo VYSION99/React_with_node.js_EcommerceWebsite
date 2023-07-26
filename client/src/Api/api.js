@@ -66,3 +66,15 @@ export const AdminLogApi =async (AdminData)=>{
 export const LOGOUTapi = async ()=>{
  localStorage.removeItem("user");
 }
+
+
+export const  ProductApi = async (product,token )=>{
+    const config = {
+           
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        }
+   const response = await API.post("Admin/products",product,config)
+   return response.data
+}
