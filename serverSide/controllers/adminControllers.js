@@ -7,6 +7,8 @@ import { Emailer } from "../Services/smtp.js";
 //=> REQUESTING MODULES
 import Admin from "../models/AdminModels.js"
 import { Id_generator , global,Rolled} from "../middleware/authMiddleware.js"
+import { fashData } from "../middleware/DataMiddleware.js";
+//import { image } from "../Gallary/GalleryController.js";
 
 
 //=> generate admin token
@@ -16,8 +18,15 @@ const adminToken = (id)=>{ return jwt.sign({id},process.env.adminJwtSecret,{
 } 
  
 export const getAdmin=(req,res)=>{
-    res.json("success")
+    
+  fashData(res)
+    
+//res.status(202).json(image)
+
 } 
+
+
+
 export const setAdmin = AsyncHandler( async (req,res)=>{   
     
  const { Firstname, Lastname, Email} = req.body
@@ -25,7 +34,7 @@ Id_generator(Firstname,Lastname)
 
 //get admin Password
 const password = global
-
+console.log(password)
 //=> checking for validation    
 if( !Email || !password) {
     res.status(400).json({
@@ -41,9 +50,9 @@ if(AdminExist) res.status(400).json({msg:"Admin inputed data aready exist"})
    //=> hash the password
    const salt = await bcrypt.genSalt(10);
    const hashedpassword = await bcrypt.hash(password , salt)
-   
+    
 
-  const success = Emailer(Email,password,res) 
+  const success = Emailer(Email,password,res)   
 
 //=> save admin data
 

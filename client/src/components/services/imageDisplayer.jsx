@@ -1,38 +1,54 @@
-import React, { useState, useEffect } from'react';
-import { Button, Container,  Image } from'react-bootstrap';
-import fs from'fs';
+import React, { useState } from 'react';
+import { BaseURL } from './exporter.';
 
-const imagesFolder = 'images';
+export const ImagePagination = ({ images, itemsPerPage }) => {
+  const [currentPage, setCurrentPage] = useState(1);
 
-const App = () => {
-  const [images, setImages] = useState([]);
-  // read images from folder and add to state variable
-  useEffect(() => {
-    const readImages = async () => {
-      const imagesFolder = "/image"
-      const images = [];
-      const files = fs.readdirSync(imagesFolder);
-      for (const file of files) {
-        const filename = `${imagesFolder}/${file}`;
-        const imageData = fs.readFileSync(filename);
-        images.push(imageData);
-      }
-      setImages(images);
-    };
-    readImages();
-  }, []);
- console.log(images)
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const pageImages = images.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(images.length / itemsPerPage);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+  console.log(pageImages.map((x,y)=>{
+    return x.image
+  }))
   return (
-    <Container>
-      <div container className="mt-5 grid">
-        {images.map((image, index) => (
-          <div className='grid' item key={index} xs={12} sm={6} md={4} lg={3} xl={3}>
-            <Image src={image} alt={`Image ${index}`} width="100" height="100" />
-          </div>
+    <div>
+      <div className="image-container bg-red-600">
+        {pageImages.map((image, index) => (
+          
+          
+          <>
+          <img key={index} src={(BaseURL+"/"+image.image).replace(/\\/g, '/')} alt={`Image ${index + startIndex + 1}`} />
+          <p></p>
+          </>
         ))}
       </div>
-    </Container>
+      <div className="pagination bg-slate-800">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={currentPage === index + 1 ? 'active' : ''}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 };
 
-export default App;
+ export const ImageDiff =(data) =>{
+
+for ( var store of data){
+  for (var obj in store){
+    return  store[obj]
+  }
+}
+
+ }

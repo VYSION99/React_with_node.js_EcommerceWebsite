@@ -1,9 +1,10 @@
 import {createAsyncThunk,createSlice} from "@reduxjs/toolkit";
 import { ProductApi } from "../../Api/api";
 
+var Product = JSON.parse(localStorage.getItem("products"))
 
 const initialState ={
-    Product:[],
+    Product:[Product] ? [Product]:null,
     Isloading:false,
     Ispublished: false,
     Iserror:false,
@@ -13,12 +14,12 @@ const initialState ={
 export  const createProduct = createAsyncThunk( "product/published" , async (Product, thunkAPI)=>{
        try {
         const token = thunkAPI.getState().Admin.admin.token
-        console.log(token)
+        
         return await ProductApi(Product,token)
        } catch (error) {
          console.log(error);
         const message =
-          error.response.data || error.message || error.toString();
+         ( error.response.data && error.response.data.msg )|| error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
        }
 
@@ -33,7 +34,7 @@ const productSlice = createSlice({
     },
     extraReducers:(builder)=>{
         builder
-        .addCase(createProduct.pending, (state, ) => {
+        .addCase(createProduct.pending, (state) => {
           state.Isloading = true;
         })
         .addCase(createProduct.fulfilled, (state, action) => {

@@ -1,74 +1,73 @@
-// product Brand
-const FaData ={
-21:"Nike", 
-20:"Gucci",
-19:"Louis Vuitton",
-18:"Adidas",
-17:"Lululemon",
-16: "Zara",
-15:"Chanel",
-14:"UNIQLO",
-13: "H&M",
-12: "Cartier", 
-11:"Hermès", 
-10: "Zalando", 
-9:"Tiffany & Co",
-8:"Moncler",
-7:"Rolex",
-6:"Prada",
-5:"Patek Philippe",
-4:"Burberry",
-3:"Chow Tai Fook",
-1:"Swarovski",
+//................................................... product sub cat  ...........................................................//
+const Apparel ={
+jewelry:"Jewelry & Accessories", 
+dresses:"Men & Women Wear",
+kiks:"Shoes & Shandals"
 }
-const AccessData ={
-1: "Anker",       
-2: "Logitech",    
-3: "JBL",         
-4:"OtterBox",     
-5:"Belkin",     
-6:"GoPro",      
-7:"Razer",     
-8:"Bose",        
-9:"Samsung",     
-10:"Apple",       
-11:"Canon",       
-12:"Amazon",       
-13:"Sennheiser",  
-14:"Garmin",      
-15:"Nikon",        
+const Garden ={
+furniture:"Furniture ", 
+pet:"Pet Supplies",
+cloths:"Fabric & Textile Materials",
+flowers:"Flowers"
 }
-const   FoData ={
-1:"Nestle", 2:"PepsiCo", 3:"Coca-Cola", 4:"Unilever", 5:"Danone", 
-6:"Kraft Heinz", 7:"General Mills", 8:"Kellogg's",9: "Mars", 10:"Mondelez", 11:"Other",
-
+const Beauty ={
+cos:"Comestics", 
+}
+const Sport ={
+cos:"Lugage , Bags & Cases", 
+toys:"Kids & Toys", 
+shoe:"Shoes & Accessories", 
+}
+///////////////////.................. Technology sub cat.................................////////////////////////////////////////
+const Industrial ={
+1: "Constructions Machinerys",       
+2: "Building Machineeys",           
+}
+const consumer ={
+1: "Home Appliances",       
+          
+}
+const Travels ={
+1: "verhicle spare Parts ",       
+2: " 1 , 2 & 3 Cycles",           
+}
+//////////////. .................. food sub cat ........................... .////////////////////////////
+const farm ={
+1: "Farm Tools",       
+2: "Crops Chemicals",           
+}
+const FoodPackeages ={
+1: "Wrapped Foods",       
+2: "Canned Foods",           
+3: "Cooked & Roasted Foods",           
 }
 
-// product categorys
+const brandArr = [FoodPackeages,farm,Travels,consumer,Industrial,Sport,Beauty,Apparel,Garden]
+
+// product main categorys
 const TeCategorys = {
-cables: "Portable chargers and cables", 
-computer: "Computer peripherals", 
-electronic: "Electronics accessories",
-smart: "Smart trackers", 
-tracking: "Fitness trackers and smartwatches", 
-audio: "Audio products", 
-memory:"Memory cards and flash drives", 
-phone:"Phone cases and screen protectors", 
-wireless:"Wireless chargers and adapters", 
-cameras: "Action cameras and mounts", 
+cables: "Industrial Machinery", 
+home: "Consumer Electronics", 
+vehicles: "Travels & Accessories",
+smart: "Computers & Accessories", 
+sounds: "Sonuds Stms & Accessories", 
+
 } 
-const FoCategorys = {}
+const FoCategorys = {
+  veg: "Vegetables",
+  fruite: "friuts",
+  drinks: "Drinks & Beverages",
+  agro: "Agriculture Tools",
+  med: "Medicines (Animals)",
+  food: "Food packages",
+ 
+};
 const FCategorys={
-mini: "Mini dress",
-midi: "Midi dress", 
-maxi: "Maxi dress", 
-shoulder: "Off-the-shoulder dress",
-wrap: "Wrap dress",   
-shift: "Shift dress",  
-Aline: "A-line dress", 
-kaften: "Kaftan dress", 
-barfot: "Bardot dress",   
-surplice: "Surplice dress", 
+mini: "Sport & Entertainment",
+midi: "Beauty", 
+maxi: "Home & Gardens", 
+shoulder: "Apparel & Accessories",
+
 } 
 
 const FashionCategorys = Object.entries(FCategorys).map( ([key,value]) =>{
@@ -76,6 +75,7 @@ const FashionCategorys = Object.entries(FCategorys).map( ([key,value]) =>{
     value:key,
     label:value
 }})
+
 const TechnologyCategorys = Object.entries(TeCategorys).map( ([key,value]) =>{
    return {
     value:key,
@@ -86,21 +86,19 @@ const FoodCategorys = Object.entries(FoCategorys).map( ([key,value]) =>{
     value:key,
     label:value
 }})
-const FoodData = Object.entries(FoData).map( ([key,value]) =>{
+
+
+////////////// sub cat maping ./////////////////////////
+ let results=[];
+for (let i = 0; i < brandArr.length; i++) {
+    
+  const data = Object.entries(brandArr[i]).map( ([key,value]) =>{
    return {
     value:key,
     label:value
 }})
-const accessoriesData = Object.entries(AccessData).map( ([key,value]) =>{
-   return {
-    value:key,
-    label:value
-}})
-const FashionData = Object.entries(FaData).map( ([key,value]) =>{
-   return {
-    value:key,
-    label:value
-}})
+results.push(data)
+}
 export const productData ={
-    FashionCategorys,FashionData,FoodCategorys,FoodData,TechnologyCategorys,accessoriesData
+   results,FashionCategorys,FoodCategorys,TechnologyCategorys
 }

@@ -16,7 +16,7 @@ import RecoveryPassword from  './components/UserAuth/ForgetPassword/passwordreco
 
 import Header from "./components/Header/Header";
 import Dashboard from "./components/Dashboard/User_main/Home"
-import AdminHome from "./components/Dashboard/AdminHome"
+import AdminHome from "./components/Dashboard/ProductForm"
 import Admin from "./components/Administrator/auth/Admin"
 import AdminAuthorize from "./components/Administrator/auth/AdminLogger"
 import AdminDashboard from "./components/Dashboard/Admin_Dashboard/AdminDasshboard"

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import {motion} from "../../services/MotionRender"
 import Spinner from '../../services/spinner'
 import ProfileList, {ProfileContent} from "./utils/navList"
+import Displayer from "./utils/displayer"
+
 
 
 function Home() {
@@ -23,13 +25,13 @@ navigate("/")
         <div className=" flag object-cover w-full">
           
           <div className="content bg-dark  justify-items-center opacity-70 ">
-            <ProfileList  />
+           
           </div>
         </div>
-           <ProfileContent />
+          {// <ProfileContent />
+          }
 
-            
-          
+           <Displayer/>
         
         {loader? <Spinner />:""}
     </div>

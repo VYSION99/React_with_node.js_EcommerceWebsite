@@ -2,7 +2,7 @@ import {createAsyncThunk,createSlice }  from "@reduxjs/toolkit"
 import {AdminApi,AdminLogApi} from '../../Api/api';
 
 // get admin data from localStorage
-const admin = JSON.parse(localStorage.getItem('Admin'));
+const admin = JSON.parse(localStorage.getItem('admin'));
 const initialState ={
     admin: admin ? admin : null,
     isError: false,

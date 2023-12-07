@@ -5,7 +5,7 @@ import axios from 'axios'
 const API_user_Url = "user/";
 
 //=> XHR TRANSFERING
-const API = axios.create({
+export const API = axios.create({
    baseURL: "http://localhost:4000/api/v1/"
 })
 
@@ -66,8 +66,7 @@ export const AdminLogApi =async (AdminData)=>{
 export const LOGOUTapi = async ()=>{
  localStorage.removeItem("user");
 }
-
-
+ 
 export const  ProductApi = async (product,token )=>{
     const config = {
            
@@ -76,5 +75,18 @@ export const  ProductApi = async (product,token )=>{
             }
         }
    const response = await API.post("Admin/products",product,config)
+if(response.data){ 
+    localStorage.setItem("products", JSON.stringify(response.data));
+}
    return response.data
 }
+export const  BULKApi = async (product )=>{
+  
+   const response = await API.get("Admin/product",product)
+
+/*   if(response.data){ 
+    localStorage.setItem("products", JSON.stringify(response.data));
+}*/
+   return response.data
+}
+ console.log(BULKApi())

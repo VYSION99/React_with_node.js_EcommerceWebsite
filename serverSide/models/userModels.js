@@ -17,27 +17,24 @@ const userScehma = mongoose.Schema({
         default: new Date
     }
 })
+//............................................................ product schema ......................................//
 
-const ProductSchema = new mongoose.Schema({
-    Category:{type:String},
-    Brand:{type:String,
-    require:[true ,"provide brand"]
-    }
-})
 const productItem = new mongoose.Schema({
    ProductName:{
     type: String,
     require: [true, "Product name is essential"],
-    unique: true
+    
    } ,
-   ProductImage:[String],
-   
+  
+   Category:{type:String},
+    Brand:{type:String,
+    require:[true ,"provide brand"]
+    },
 Price:[String],
 Descriptions:String
 
 });
 export const product ={
-    ProductBrand: mongoose.model("ProductBrand",ProductSchema,"Products"),
     ProductItem: mongoose.model("ProductItem",productItem,"Products")
 }
 
